@@ -4,7 +4,9 @@ var app = express()
 
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
-
+app.get('/name', function(request, response) {
+  response.send("Hello, my name is " + process.env.MYNAME)
+})
 app.get('/', function(request, response) {
   if(config.util.getEnv("NODE_ENV") === "Testing"){
     response.send("<b>You are working in the <em>TESTING</em> environment</b>")
